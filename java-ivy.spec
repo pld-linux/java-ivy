@@ -3,12 +3,6 @@
 %bcond_without	javadoc		# don't build javadoc
 %bcond_without	tests		# don't build and run tests
 
-%if "%{pld_release}" == "ti"
-%bcond_without	java_sun	# build with gcj
-%else
-%bcond_with		java_sun	# build with java-sun
-%endif
-
 %define		srcname		ivy
 %include	/usr/lib/rpm/macros.java
 Summary:	Java-based dependency manager
