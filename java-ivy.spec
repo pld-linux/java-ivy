@@ -8,7 +8,7 @@
 Summary:	Java-based dependency manager
 Name:		java-%{srcname}
 Version:	2.1.0
-Release:	1
+Release:	2
 License:	ASL 2.0
 Group:		Development/Tools
 URL:		http://ant.apache.org/ivy/
@@ -80,6 +80,9 @@ install -d $RPM_BUILD_ROOT%{_javadir}
 install -p build/artifact/jars/%{srcname}.jar $RPM_BUILD_ROOT%{_javadir}/%{srcname}-%{version}.jar
 ln -sf %{srcname}-%{version}.jar $RPM_BUILD_ROOT%{_javadir}/%{srcname}.jar
 
+install -d $RPM_BUILD_ROOT%{_sysconfdir}/ant.d
+echo "ivy" > $RPM_BUILD_ROOT%{_sysconfdir}/ant.d/%{srcname}
+
 # API Documentation
 %if %{with javadoc}
 install -d $RPM_BUILD_ROOT%{_javadocdir}/%{name}-%{version}
@@ -97,6 +100,9 @@ ln -nfs %{srcname}-%{version} %{_javadocdir}/%{srcname}
 %defattr(644,root,root,755)
 %doc RELEASE_NOTES CHANGES.txt LICENSE NOTICE README
 %{_javadir}/*.jar
+
+# %files -n ant-ivy
+%{_sysconfdir}/ant.d/%{srcname}
 
 %if %{with javadoc}
 %files javadoc
