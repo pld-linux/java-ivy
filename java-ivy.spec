@@ -8,7 +8,7 @@
 Summary:	Java-based dependency manager
 Name:		java-%{srcname}
 Version:	2.1.0
-Release:	0.1
+Release:	1
 License:	ASL 2.0
 Group:		Development/Tools
 URL:		http://ant.apache.org/ivy/
@@ -17,10 +17,10 @@ Source0:	http://www.apache.org/dist/ant/ivy/%{version}/apache-%{srcname}-%{versi
 BuildRequires:	ant
 BuildRequires:	ant-nodeps
 BuildRequires:	java-commons-httpclient
+BuildRequires:	java-jsch
 BuildRequires:	java-oro
 BuildRequires:	jdk >= 1.5
 BuildRequires:	jpackage-utils
-BuildRequires:	jsch
 BuildRequires:	rpmbuild(macros) >= 1.300
 BuildRequires:	sed >= 4.0
 Requires:	jpackage-utils
