@@ -4,7 +4,6 @@
 %bcond_without	tests		# don't build and run tests
 
 %define		srcname		ivy
-%include	/usr/lib/rpm/macros.java
 Summary:	Java-based dependency manager
 Name:		java-%{srcname}
 Version:	2.1.0
