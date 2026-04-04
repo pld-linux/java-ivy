@@ -3,24 +3,25 @@
 %bcond_without	javadoc		# don't build javadoc
 %bcond_without	tests		# don't build and run tests
 
+%{?use_default_jdk:%use_default_jdk 8}
+
 %define		srcname		ivy
 Summary:	Java-based dependency manager
 Name:		java-%{srcname}
 Version:	2.1.0
-Release:	2
+Release:	3
 License:	ASL 2.0
 Group:		Development/Tools
 URL:		http://ant.apache.org/ivy/
 Source0:	http://www.apache.org/dist/ant/ivy/%{version}/apache-%{srcname}-%{version}-src.tar.gz
 # Source0-md5:	49130a0c8beb74d77653e5443dacecd5
 BuildRequires:	ant
-BuildRequires:	ant-nodeps
 BuildRequires:	java-commons-httpclient
 BuildRequires:	java-jsch
 BuildRequires:	java-oro
-BuildRequires:	jdk >= 1.5
+%buildrequires_jdk
 BuildRequires:	jpackage-utils
-BuildRequires:	rpmbuild(macros) >= 1.300
+BuildRequires:	rpmbuild(macros) >= 1.556
 BuildRequires:	sed >= 4.0
 Requires:	jpackage-utils
 Provides:	ivy = %{version}-%{release}
@@ -66,7 +67,6 @@ sed '/vfs.*=.*org.apache.ivy.plugins.resolver.VfsResolver/d' -i \
 %build
 # Craft class path
 mkdir -p lib
-build-jar-repository lib ant ant/ant-nodeps commons-httpclient oro jsch
 
 # Build
 %ant /localivy /offline jar %{?with_javadoc:javadoc}
