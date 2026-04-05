@@ -9,7 +9,7 @@
 Summary:	Java-based dependency manager
 Name:		java-%{srcname}
 Version:	2.1.0
-Release:	3
+Release:	4
 License:	ASL 2.0
 Group:		Development/Tools
 URL:		http://ant.apache.org/ivy/
@@ -67,6 +67,11 @@ sed '/vfs.*=.*org.apache.ivy.plugins.resolver.VfsResolver/d' -i \
 %build
 # Craft class path
 mkdir -p lib
+ln -sf $(find-jar ant) lib/ant.jar
+ln -sf $(find-jar ant-launcher) lib/ant-launcher.jar
+ln -sf $(find-jar commons-httpclient) lib/commons-httpclient.jar
+ln -sf $(find-jar jsch) lib/jsch.jar
+ln -sf $(find-jar oro) lib/oro.jar
 
 # Build
 %ant /localivy /offline jar %{?with_javadoc:javadoc}
